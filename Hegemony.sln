@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25123.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{B5421360-C7BE-482F-9D7B-40AF6575AFD0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DCD19468-73C3-4C66-86FC-FC21A215EA44}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Hegemony", "src\Hegemony\Hegemony.xproj", "{142C601F-C5C1-4B16-9865-D2E2F6757A7B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{142C601F-C5C1-4B16-9865-D2E2F6757A7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{142C601F-C5C1-4B16-9865-D2E2F6757A7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{142C601F-C5C1-4B16-9865-D2E2F6757A7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{142C601F-C5C1-4B16-9865-D2E2F6757A7B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{142C601F-C5C1-4B16-9865-D2E2F6757A7B} = {B5421360-C7BE-482F-9D7B-40AF6575AFD0}
+	EndGlobalSection
+EndGlobal
