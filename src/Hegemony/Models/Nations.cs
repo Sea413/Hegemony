@@ -19,9 +19,11 @@ namespace Hegemony.Models
         public int EconomyId { get; set; }
         public int EconomyValue { get; set; }
         public int GeographyId { get; set; }
+        public int GeographyValue { get; set; }
         public int TechnologyId { get; set; }
         public int TechnologyValue { get; set; }
         public int ArmyId { get; set; }
         public int ArmyValue { get; set; }
+        public virtual ApplicationUser User { get; set; }
     }
 }

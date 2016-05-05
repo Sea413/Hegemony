@@ -1,0 +1,25 @@
+1.)Nation Elements:
+a.) Name
+b.) Government Type (Limit One)
+c.) Economy Type (Limit One)
+d.) Geography (Resource Type)
+e.) Technology Tradition (Nukes?)
+f.) Army Type (Military Might)
+
+2.) Persistent variables
+a.) capital
+b.) resources
+c.) population
+d.) Happiness
+e.) Army Size
+f.) technology value
+
+3.) Situations
+a.) Aliens Visit
+b.) Recruitment Day
+c.) Scientists perfect gene determination
+d.) Plague hits metropolitan centers
+e.) A foreign empire dies
+f.) New drugs are introduced making people happy
+g.) Isolate the nation
+h.) Asteroid will hit earth in the future, your country is the only one with enough fuel to stop it.

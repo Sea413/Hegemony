@@ -1,0 +1,43 @@
+﻿@model Hegemony.Models.Nation
+
+    <h2>Create</h2>
+    <hr />
+    <h4>Forge a new Nation</h4>
+
+                @using (Html.BeginForm())
+            {
+                    <p>
+                        Nation Name
+                        @Html.TextBoxFor(model => model.Name)
+                    </p>
+
+                    <p>
+                        Army Doctrine
+                        @Html.DropDownList("ArmyId")
+                    </p>
+
+
+                    <p>
+                        Economic Policy
+                        @Html.DropDownList("EconomyId")
+                    </p>
+
+                    <p>
+                        Government Tradition
+                        @Html.DropDownList("GovernmentId")
+                    </p>
+
+                    <p>
+                        Technological Ability
+                        @Html.DropDownList("TechnologyId")
+                    </p>
+
+                    <p>
+                        Geographic Layout
+                        @Html.DropDownList("GeographyId")
+                    </p>
+
+                    <input type="submit" value="Create" />
+
+                }
+    <p>@Html.ActionLink("Back to list", "Index")</p>

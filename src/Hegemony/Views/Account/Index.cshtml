@@ -4,16 +4,15 @@
 <hr />
 @if (User.IsSignedIn())
 {
-    <p>Hello @User.GetUserName()!</p>
+    <p>Greetings @User.GetUserName()!</p>
 }
 else
 {
     <p>@Html.ActionLink("New Nation", "Register")</p>
-    <p>@Html.ActionLink("Log in", "Login")</p>
+    <p>@Html.ActionLink("Log into your Nation!", "Login")</p>
 }
 @if (User.IsSignedIn())
 {
-    <p>Hello @User.GetUserName()!</p>
     @using (Html.BeginForm("LogOff", "Account"))
     {
         <input type="submit" class="btn btn-default" value="Log out" />
