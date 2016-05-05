@@ -15,8 +15,18 @@ namespace Hegemony.Models
         public int GovernmentId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public int Modifier { get; set; }
+        public decimal PositiveModifier { get; set; }
+        public decimal NegativeModifier { get; set; }
         public virtual ICollection<Nation> Nations { get; set; }
 
+        public Government(string name, string description, decimal positiveModifier, decimal negativeModifier, int id = 0)
+        {
+            Name = name;
+            Description = description;
+            PositiveModifier = positiveModifier;
+            NegativeModifier = negativeModifier;
+            GovernmentId = id;
+        }
+    public Government() { }
     }
 }

@@ -15,13 +15,13 @@ namespace Hegemony.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        public ActionResult Create()
+        public ActionResult Setup()
         {
-            ViewBag.ArmyId = new SelectList(db.Armies, "ArmyId", "name");
-            ViewBag.TechnologyId = new SelectList(db.Technologies, "TechnologyId", "name");
-            ViewBag.GeographyId = new SelectList(db.Geographies, "GeographyId", "name");
-            ViewBag.EconomicsId = new SelectList(db.Economics, "EconomicsId", "name");
-            ViewBag.GovernmentId = new SelectList(db.Government, "GovernmentId", "name")
+            ViewBag.ArmyId = new SelectList(db.Armies, "ArmyId", "Name");
+            ViewBag.TechnologyId = new SelectList(db.Technologies, "TechnologyId", "Name");
+            ViewBag.GeographyId = new SelectList(db.Geographies, "GeographyId", "Name");
+            ViewBag.EconomicsId = new SelectList(db.Economics, "EconomicsId", "Name");
+            ViewBag.GovernmentId = new SelectList(db.Governments, "GovernmentId", "Name");
 
 
             return View();
@@ -34,6 +34,12 @@ namespace Hegemony.Controllers
         //    db.SaveChanges();
         //    return RedirectToAction("Index");
         //}
+        public IActionResult newGovernment(int id)
+        {
+            var test = id;
+            var newGovernmentDescription = db.Governments.FirstOrDefault(Government => Government.GovernmentId == id);
+            return Json(newGovernmentDescription);
+        }
 
     }
 }

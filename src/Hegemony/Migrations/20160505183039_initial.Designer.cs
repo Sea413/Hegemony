@@ -8,8 +8,8 @@ using Hegemony.Models;
 namespace Hegemony.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20160504214646_Initial")]
-    partial class Initial
+    [Migration("20160505183039_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -65,6 +65,78 @@ namespace Hegemony.Migrations
                     b.HasAnnotation("Relational:TableName", "AspNetUsers");
                 });
 
+            modelBuilder.Entity("Hegemony.Models.Army", b =>
+                {
+                    b.Property<int>("ArmyId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Name");
+
+                    b.Property<decimal>("NegativeModifier");
+
+                    b.Property<decimal>("PositiveModifier");
+
+                    b.HasKey("ArmyId");
+
+                    b.HasAnnotation("Relational:TableName", "Armies");
+                });
+
+            modelBuilder.Entity("Hegemony.Models.Economy", b =>
+                {
+                    b.Property<int>("EconomyId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Name");
+
+                    b.Property<decimal>("NegativeModifier");
+
+                    b.Property<decimal>("PositiveModifier");
+
+                    b.HasKey("EconomyId");
+
+                    b.HasAnnotation("Relational:TableName", "Economies");
+                });
+
+            modelBuilder.Entity("Hegemony.Models.Geography", b =>
+                {
+                    b.Property<int>("GeographyId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Name");
+
+                    b.Property<decimal>("NegativeModifier");
+
+                    b.Property<decimal>("PositiveModifier");
+
+                    b.HasKey("GeographyId");
+
+                    b.HasAnnotation("Relational:TableName", "Geographies");
+                });
+
+            modelBuilder.Entity("Hegemony.Models.Government", b =>
+                {
+                    b.Property<int>("GovernmentId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Name");
+
+                    b.Property<decimal>("NegativeModifier");
+
+                    b.Property<decimal>("PositiveModifier");
+
+                    b.HasKey("GovernmentId");
+
+                    b.HasAnnotation("Relational:TableName", "Governments");
+                });
+
             modelBuilder.Entity("Hegemony.Models.Hazard", b =>
                 {
                     b.Property<int>("HazardId")
@@ -96,6 +168,8 @@ namespace Hegemony.Migrations
 
                     b.Property<int>("GeographyId");
 
+                    b.Property<int>("GeographyValue");
+
                     b.Property<int>("GovernmentId");
 
                     b.Property<int>("GovernmentValue");
@@ -105,6 +179,8 @@ namespace Hegemony.Migrations
                     b.Property<int>("TechnologyId");
 
                     b.Property<int>("TechnologyValue");
+
+                    b.Property<string>("UserId");
 
                     b.HasKey("NationId");
 
@@ -135,6 +211,24 @@ namespace Hegemony.Migrations
                     b.HasKey("OutcomeId");
 
                     b.HasAnnotation("Relational:TableName", "Outcomes");
+                });
+
+            modelBuilder.Entity("Hegemony.Models.Technology", b =>
+                {
+                    b.Property<int>("TechnologyId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description");
+
+                    b.Property<string>("Name");
+
+                    b.Property<decimal>("NegativeModifier");
+
+                    b.Property<decimal>("PositiveModifier");
+
+                    b.HasKey("TechnologyId");
+
+                    b.HasAnnotation("Relational:TableName", "Technologies");
                 });
 
             modelBuilder.Entity("Microsoft.AspNet.Identity.EntityFramework.IdentityRole", b =>
@@ -217,6 +311,33 @@ namespace Hegemony.Migrations
                     b.HasKey("UserId", "RoleId");
 
                     b.HasAnnotation("Relational:TableName", "AspNetUserRoles");
+                });
+
+            modelBuilder.Entity("Hegemony.Models.Nation", b =>
+                {
+                    b.HasOne("Hegemony.Models.Army")
+                        .WithMany()
+                        .HasForeignKey("ArmyId");
+
+                    b.HasOne("Hegemony.Models.Economy")
+                        .WithMany()
+                        .HasForeignKey("EconomyId");
+
+                    b.HasOne("Hegemony.Models.Geography")
+                        .WithMany()
+                        .HasForeignKey("GeographyId");
+
+                    b.HasOne("Hegemony.Models.Government")
+                        .WithMany()
+                        .HasForeignKey("GovernmentId");
+
+                    b.HasOne("Hegemony.Models.Technology")
+                        .WithMany()
+                        .HasForeignKey("TechnologyId");
+
+                    b.HasOne("Hegemony.Models.ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Hegemony.Models.Outcome", b =>

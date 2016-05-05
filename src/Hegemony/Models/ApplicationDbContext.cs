@@ -29,5 +29,11 @@ namespace Hegemony.Models
 
         public DbSet<Nation> Nation { get; set; }
         public DbSet<Hazard> Hazards { get; set; }
+        public DbSet<Army> Armies { get; set; }
+        public DbSet<Technology> Technologies { get; set; }
+        public DbSet<Geography> Geographies { get; set; }
+        public DbSet<Economy> Economics { get; set; }
+        public DbSet<Government> Governments { get; set; }
+        public DbSet<Outcome> Outcomes { get; set; }
     }
 }

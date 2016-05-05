@@ -12,10 +12,11 @@ namespace Hegemony.Models
     public class Geography
     {
         [Key]
-        public int EconomyId { get; set; }
+        public int GeographyId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public int Modifier { get; set; }
+        public decimal PositiveModifier { get; set; }
+        public decimal NegativeModifier { get; set; }
         public virtual ICollection<Nation> Nations { get; set; }
 
     }

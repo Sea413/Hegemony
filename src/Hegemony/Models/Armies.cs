@@ -15,7 +15,8 @@ namespace Hegemony.Models
         public int ArmyId { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public int Modifier { get; set; }
+        public decimal PositiveModifier { get; set; }
+        public decimal NegativeModifier { get; set; } 
         public virtual ICollection<Nation> Nations { get; set; }
 
     }

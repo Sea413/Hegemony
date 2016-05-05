@@ -1,7 +1,7 @@
 ﻿@model Hegemony.Models.Nation
 
-    <h2>Create</h2>
-    <hr />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
     <h4>Forge a new Nation</h4>
 
                 @using (Html.BeginForm())
@@ -11,33 +11,57 @@
                         @Html.TextBoxFor(model => model.Name)
                     </p>
 
-                    <p>
+                    @*<p>
                         Army Doctrine
-                        @Html.DropDownList("ArmyId")
+                        <div class="Army"> @Html.DropDownList("ArmyId")</div>
                     </p>
 
 
                     <p>
                         Economic Policy
-                        @Html.DropDownList("EconomyId")
-                    </p>
+                        <div class="Economy">@Html.DropDownList("EconomyId")</div>
+                    </p>*@
 
                     <p>
                         Government Tradition
-                        @Html.DropDownList("GovernmentId")
+                        <div class="GovernmentId1"> @Html.DropDownList("GovernmentId")</div>
                     </p>
 
-                    <p>
+                    @*<p>
                         Technological Ability
-                        @Html.DropDownList("TechnologyId")
+                        <div class="Technology"> @Html.DropDownList("TechnologyId")</div>
                     </p>
 
                     <p>
                         Geographic Layout
-                        @Html.DropDownList("GeographyId")
-                    </p>
+                        <div class="Geography">@Html.DropDownList("GeographyId")</div>
+                    </p>*@
 
                     <input type="submit" value="Create" />
 
                 }
+     
+    <h2>Description:</h2>
+    <h3>Government Description: </h3>
+    <div class="GovernmentResults"></div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.GovernmentId1').change(function () {
+                console.log("firing");
+                $.ajax({
+                    url: '/Game/newGovernment/' + $('#GovernmentId').val(),
+                    type: 'GET',
+                    data: $(this).serialize(),
+                    dataType: 'json',
+                    success: function (GovernmentResult) {
+                        var result = GovernmentResult.Description
+                        $('.GovernmentResults').html(result);
+                    }
+                });
+            });
+        });
+    </script>
+<h2>Test</h2>
+
     <p>@Html.ActionLink("Back to list", "Index")</p>

@@ -5,7 +5,7 @@ using Microsoft.Data.Entity.Metadata;
 
 namespace Hegemony.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -34,6 +34,66 @@ namespace Hegemony.Migrations
                     table.PrimaryKey("PK_ApplicationUser", x => x.Id);
                 });
             migrationBuilder.CreateTable(
+                name: "Armies",
+                columns: table => new
+                {
+                    ArmyId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Description = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    NegativeModifier = table.Column<decimal>(nullable: false),
+                    PositiveModifier = table.Column<decimal>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Army", x => x.ArmyId);
+                });
+            migrationBuilder.CreateTable(
+                name: "Economies",
+                columns: table => new
+                {
+                    EconomyId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Description = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    NegativeModifier = table.Column<decimal>(nullable: false),
+                    PositiveModifier = table.Column<decimal>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Economy", x => x.EconomyId);
+                });
+            migrationBuilder.CreateTable(
+                name: "Geographies",
+                columns: table => new
+                {
+                    GeographyId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Description = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    NegativeModifier = table.Column<decimal>(nullable: false),
+                    PositiveModifier = table.Column<decimal>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Geography", x => x.GeographyId);
+                });
+            migrationBuilder.CreateTable(
+                name: "Governments",
+                columns: table => new
+                {
+                    GovernmentId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Description = table.Column<string>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    NegativeModifier = table.Column<decimal>(nullable: false),
+                    PositiveModifier = table.Column<decimal>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Government", x => x.GovernmentId);
+                });
+            migrationBuilder.CreateTable(
                 name: "Hazards",
                 columns: table => new
                 {
@@ -48,25 +108,19 @@ namespace Hegemony.Migrations
                     table.PrimaryKey("PK_Hazard", x => x.HazardId);
                 });
             migrationBuilder.CreateTable(
-                name: "Nations",
+                name: "Technologies",
                 columns: table => new
                 {
-                    NationId = table.Column<int>(nullable: false)
+                    TechnologyId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ArmyId = table.Column<int>(nullable: false),
-                    ArmyValue = table.Column<int>(nullable: false),
-                    EconomyId = table.Column<int>(nullable: false),
-                    EconomyValue = table.Column<int>(nullable: false),
-                    GeographyId = table.Column<int>(nullable: false),
-                    GovernmentId = table.Column<int>(nullable: false),
-                    GovernmentValue = table.Column<int>(nullable: false),
+                    Description = table.Column<string>(nullable: true),
                     Name = table.Column<string>(nullable: true),
-                    TechnologyId = table.Column<int>(nullable: false),
-                    TechnologyValue = table.Column<int>(nullable: false)
+                    NegativeModifier = table.Column<decimal>(nullable: false),
+                    PositiveModifier = table.Column<decimal>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Nation", x => x.NationId);
+                    table.PrimaryKey("PK_Technology", x => x.TechnologyId);
                 });
             migrationBuilder.CreateTable(
                 name: "AspNetRoles",
@@ -146,6 +200,65 @@ namespace Hegemony.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
             migrationBuilder.CreateTable(
+                name: "Nations",
+                columns: table => new
+                {
+                    NationId = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ArmyId = table.Column<int>(nullable: false),
+                    ArmyValue = table.Column<int>(nullable: false),
+                    EconomyId = table.Column<int>(nullable: false),
+                    EconomyValue = table.Column<int>(nullable: false),
+                    GeographyId = table.Column<int>(nullable: false),
+                    GeographyValue = table.Column<int>(nullable: false),
+                    GovernmentId = table.Column<int>(nullable: false),
+                    GovernmentValue = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    TechnologyId = table.Column<int>(nullable: false),
+                    TechnologyValue = table.Column<int>(nullable: false),
+                    UserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Nation", x => x.NationId);
+                    table.ForeignKey(
+                        name: "FK_Nation_Army_ArmyId",
+                        column: x => x.ArmyId,
+                        principalTable: "Armies",
+                        principalColumn: "ArmyId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Nation_Economy_EconomyId",
+                        column: x => x.EconomyId,
+                        principalTable: "Economies",
+                        principalColumn: "EconomyId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Nation_Geography_GeographyId",
+                        column: x => x.GeographyId,
+                        principalTable: "Geographies",
+                        principalColumn: "GeographyId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Nation_Government_GovernmentId",
+                        column: x => x.GovernmentId,
+                        principalTable: "Governments",
+                        principalColumn: "GovernmentId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Nation_Technology_TechnologyId",
+                        column: x => x.TechnologyId,
+                        principalTable: "Technologies",
+                        principalColumn: "TechnologyId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Nation_ApplicationUser_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -210,6 +323,11 @@ namespace Hegemony.Migrations
             migrationBuilder.DropTable("AspNetUserClaims");
             migrationBuilder.DropTable("AspNetUserLogins");
             migrationBuilder.DropTable("AspNetUserRoles");
+            migrationBuilder.DropTable("Armies");
+            migrationBuilder.DropTable("Economies");
+            migrationBuilder.DropTable("Geographies");
+            migrationBuilder.DropTable("Governments");
+            migrationBuilder.DropTable("Technologies");
             migrationBuilder.DropTable("Hazards");
             migrationBuilder.DropTable("AspNetRoles");
             migrationBuilder.DropTable("AspNetUsers");
