@@ -1,0 +1,29 @@
+Government Policies
+a.) Monarchy (Resource penalties are reduced by half, happiness increases at 75% rate)
+b.) Democracy (All hapiness boosts are doubled, population cannot be reduced.)
+c.) Theocracy (State gains capital at 1.5 times the rate, must conduct wars on non religious nations)
+d.) Communism (Happines is reduced by half at the end of the game, will be unaffected by population caps)
+
+Army Policies:
+a.) Volunteer Force (Army size can never be more than 1/4 of the population, resource expenditure on army actions is half)
+b.) Forced Conscription (Army size can exceed population count, tech increases are reduced by half)
+c.) Robot Army (You can contribute your tech score to all army checks, if your tech falls below your starting value, you cannot contribute your army strength to events)
+d.) No Army (Happiness, resources, capital, technology all recieve 1.5 times bonus at the end of the game, your army score will remain at zero throughout the game)
+
+Technology Policies
+a.) Science is a hoax(Your tech value starts at zero, your happiness score can only increase)
+b.) Cyborgs (Technology increases at a 3X rate, population recieves a 90% reduction at the start of the game.)
+c.) War Machine (All army boosts will also count as tech boosts, peaceful solutions will never be provided as options during the game)
+d.) Peace sciences (War options will never be provided during the game, tech increases will always be applied to happiness)
+
+Geography
+a.) Desert (Starting population is 25% lower, but all resource bumps half way through the game triple)
+b.) Mountains (Resource score can be added to army score in checks, resource gains are reduced by 25% )
+c.) Woodlands (No benefits are provided during the course of the game, your final score is multipled by 1.25 at the end of the game)
+d.) Islands (Happiness starts doubled, army options have a 50% chance of guranteed failure(reguardless of existing conditions))
+
+Economy
+a.) Capitalism (At the start of each round you have a 50% chance of capital increasing by 75% and a 50% chance of a 75% reduction)
+b.) Serfdom (Capital is always equal to population size)
+c.) Isolationism (Technology and population can only increase by 25%, an additional neutral option will be provided on all tests involving foreign nations)
+d.) Gold standard(All resource benefits are times 2X, any economic failures during the game result in double penalties)
