@@ -5,6 +5,7 @@
 @if (User.IsSignedIn())
 {
     <p>Greetings @User.GetUserName()!</p>
+    <p>@Html.ActionLink("New Nation", "Register")</p>
 }
 else
 {
