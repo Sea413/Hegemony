@@ -1,67 +1,124 @@
 ﻿@model Hegemony.Models.Nation
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+@using System.Security.Claims
+<h1>Testting</h1>
 
-    <h4>Forge a new Nation</h4>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 
-                @using (Html.BeginForm())
+<h4>Forge a new Nation</h4>
+
+@using (Html.BeginForm())
             {
-                    <p>
-                        Nation Name
-                        @Html.TextBoxFor(model => model.Name)
-                    </p>
+    <p>
+        Nation Name
+        @Html.TextBoxFor(model => model.Name)
+    </p>
 
-                    @*<p>
-                        Army Doctrine
-                        <div class="Army"> @Html.DropDownList("ArmyId")</div>
-                    </p>
+    <p>
+        Army Doctrine
+        <div class="ArmyId1"> @Html.DropDownList("ArmyId")</div>
+    </p>
 
+    <p>
+        Economic Policy
+        <div class="EconomyId1">@Html.DropDownList("EconomyId")</div>
+    </p>
 
-                    <p>
-                        Economic Policy
-                        <div class="Economy">@Html.DropDownList("EconomyId")</div>
-                    </p>*@
+    <p>
+        Government Tradition
+        <div class="GovernmentId1"> @Html.DropDownList("GovernmentId")</div>
+    </p>
 
-                    <p>
-                        Government Tradition
-                        <div class="GovernmentId1"> @Html.DropDownList("GovernmentId")</div>
-                    </p>
+    <p>
+        Technological Ability
+        <div class="TechnologyId1"> @Html.DropDownList("TechnologyId")</div>
+    </p>
 
-                    @*<p>
-                        Technological Ability
-                        <div class="Technology"> @Html.DropDownList("TechnologyId")</div>
-                    </p>
+    <p>
+        Geographic Layout
+        <div class="GeographyId1">@Html.DropDownList("GeographyId")</div>
+    </p>
 
-                    <p>
-                        Geographic Layout
-                        <div class="Geography">@Html.DropDownList("GeographyId")</div>
-                    </p>*@
+    <input type="submit" value="Setup" />
 
-                    <input type="submit" value="Create" />
+}
+<h1>Descriptions!</h1>
 
+<h3>Army Description: </h3>
+<div class="ArmyResults"></div>
+<h3>Economy Description: </h3>
+<div class="EconomyResults"></div>
+<h3>Government Description: </h3>
+<div class="GovernmentResults"></div>
+<h3>Technology Description: </h3>
+<div class="TechnologyResults"></div>
+<h3>Geography Description: </h3>
+<div class="GeographyResults"></div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.GovernmentId1').change(function () {
+            $.ajax({
+                url: '/Game/newGovernment/' + $('#GovernmentId').val(),
+                type: 'GET',
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function (GovernmentResult) {
+                    var result1 = GovernmentResult.Description
+                    $('.GovernmentResults').html(result1);
                 }
-     
-    <h2>Description:</h2>
-    <h3>Government Description: </h3>
-    <div class="GovernmentResults"></div>
-
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('.GovernmentId1').change(function () {
-                console.log("firing");
-                $.ajax({
-                    url: '/Game/newGovernment/' + $('#GovernmentId').val(),
-                    type: 'GET',
-                    data: $(this).serialize(),
-                    dataType: 'json',
-                    success: function (GovernmentResult) {
-                        var result = GovernmentResult.Description
-                        $('.GovernmentResults').html(result);
-                    }
-                });
             });
         });
-    </script>
-<h2>Test</h2>
+        $('.ArmyId1').change(function () {
+            $.ajax({
+                url: '/Game/newArmy/' + $('#ArmyId').val(),
+                type: 'GET',
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function (ArmyResult) {
+                    var result2 = ArmyResult.Description
+                    $('.ArmyResults').html(result2);
+                }
+            });
+        });
+        $('.EconomyId1').change(function () {
+            $.ajax({
+                url: '/Game/newEconomy/' + $('#EconomyId').val(),
+                type: 'GET',
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function (EconomyResult) {
+                    var result3 = EconomyResult.Description
+                    $('.EconomyResults').html(result3);
+                }
+            });
+        });
+        $('.TechnologyId1').change(function () {
+            $.ajax({
+                url: '/Game/newTechnology/' + $('#TechnologyId').val(),
+                type: 'GET',
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function (TechnologyResult) {
+                    var result4 = TechnologyResult.Description
+                    $('.TechnologyResults').html(result4);
+                }
+            });
+        });
+        $('.GeographyId1').change(function () {
+            console.log("firing");
+            $.ajax({
+                url: '/Game/newGeography/' + $('#GeographyId').val(),
+                type: 'GET',
+                data: $(this).serialize(),
+                dataType: 'json',
+                success: function (GeographyResult) {
+                    var result5 = GeographyResult.Description
+                    $('.GeographyResults').html(result5);
+                }
+            });
+        });
+    });
+</script>
 
-    <p>@Html.ActionLink("Back to list", "Index")</p>
+<p>@Html.ActionLink("Home", "Index")</p>

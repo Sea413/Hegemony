@@ -2,7 +2,7 @@ Government Policies
 a.) Monarchy (Resource penalties are reduced by half, happiness increases at 75% rate)
 b.) Democracy (All hapiness boosts are doubled, population cannot be reduced.)
 c.) Theocracy (State gains capital at 1.5 times the rate, must conduct wars on non religious nations)
-d.) Communism (Happines is reduced by half at the end of the game, will be unaffected by population caps)
+d.) Communism (Happines is reduced by half at the end of the game, all resource penalties are ignored.)
 
 Army Policies:
 a.) Volunteer Force (Army size can never be more than 1/4 of the population, resource expenditure on army actions is half)
@@ -11,7 +11,7 @@ c.) Robot Army (You can contribute your tech score to all army checks, if your t
 d.) No Army (Happiness, resources, capital, technology all recieve 1.5 times bonus at the end of the game, your army score will remain at zero throughout the game)
 
 Technology Policies
-a.) Science is a hoax(Your tech value starts at zero, your happiness score can only increase)
+a.) Science is a hoax(Your tech value starts at zero, your happiness score can only increase never decrease)
 b.) Cyborgs (Technology increases at a 3X rate, population recieves a 90% reduction at the start of the game.)
 c.) War Machine (All army boosts will also count as tech boosts, peaceful solutions will never be provided as options during the game)
 d.) Peace sciences (War options will never be provided during the game, tech increases will always be applied to happiness)

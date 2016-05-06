@@ -8,8 +8,8 @@ using Hegemony.Models;
 namespace Hegemony.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20160505183039_initial")]
-    partial class initial
+    [Migration("20160506171129_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
