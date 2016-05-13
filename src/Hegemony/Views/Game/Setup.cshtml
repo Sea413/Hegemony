@@ -1,9 +1,14 @@
-﻿@model Hegemony.Models.Nation
+﻿<head>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="~/js/Site.js" type="text/javascript"></script>
+</head>
+
+@model Hegemony.Models.Nation
 
 @using System.Security.Claims
-<h1>Testting</h1>
+<h1>Nation Creation Menu</h1>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
 
 <h4>Forge a new Nation</h4>
 
@@ -55,70 +60,28 @@
 <h3>Geography Description: </h3>
 <div class="GeographyResults"></div>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.GovernmentId1').change(function () {
-            $.ajax({
-                url: '/Game/newGovernment/' + $('#GovernmentId').val(),
-                type: 'GET',
-                data: $(this).serialize(),
-                dataType: 'json',
-                success: function (GovernmentResult) {
-                    var result1 = GovernmentResult.Description
-                    $('.GovernmentResults').html(result1);
-                }
-            });
-        });
-        $('.ArmyId1').change(function () {
-            $.ajax({
-                url: '/Game/newArmy/' + $('#ArmyId').val(),
-                type: 'GET',
-                data: $(this).serialize(),
-                dataType: 'json',
-                success: function (ArmyResult) {
-                    var result2 = ArmyResult.Description
-                    $('.ArmyResults').html(result2);
-                }
-            });
-        });
-        $('.EconomyId1').change(function () {
-            $.ajax({
-                url: '/Game/newEconomy/' + $('#EconomyId').val(),
-                type: 'GET',
-                data: $(this).serialize(),
-                dataType: 'json',
-                success: function (EconomyResult) {
-                    var result3 = EconomyResult.Description
-                    $('.EconomyResults').html(result3);
-                }
-            });
-        });
-        $('.TechnologyId1').change(function () {
-            $.ajax({
-                url: '/Game/newTechnology/' + $('#TechnologyId').val(),
-                type: 'GET',
-                data: $(this).serialize(),
-                dataType: 'json',
-                success: function (TechnologyResult) {
-                    var result4 = TechnologyResult.Description
-                    $('.TechnologyResults').html(result4);
-                }
-            });
-        });
-        $('.GeographyId1').change(function () {
-            console.log("firing");
-            $.ajax({
-                url: '/Game/newGeography/' + $('#GeographyId').val(),
-                type: 'GET',
-                data: $(this).serialize(),
-                dataType: 'json',
-                success: function (GeographyResult) {
-                    var result5 = GeographyResult.Description
-                    $('.GeographyResults').html(result5);
-                }
-            });
-        });
-    });
-</script>
+
+<div id="statOutput">
+    <div class="row">
+        <div class="col-xs-6" title="Total number of troops at your command!">
+            <input type="hidden" name="input_hp" id="input_army" value="1000">
+            <span>Army Size: <span><span id="aSizeOutput">1000</span><span>
+        </div>
+        <div class="col-xs-6" title="resource for performing magic attacks">
+            <span>Capital: <span><span id="capitalOutput">1000</span><span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-2">
+            <span>Natural Resources: <span> <span id="populationOutput">1000</span>
+        </div>
+        <div class="col-xs-2">
+            <span>Happiness Value: <span><span id="happinessOutput">1000</span>
+        </div>
+        <div class="col-xs-2">
+            <span>Technology Value: <span><span id="technologyOutput">1000</span>
+        </div>
+    </div>
+</div>
 
 <p>@Html.ActionLink("Home", "Index")</p>
