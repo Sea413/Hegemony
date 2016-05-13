@@ -1,11 +1,11 @@
 ﻿
-var TotalPoints = function (armyV) {
-    this.armyV = armyV;
-    this.captialV = captialV;
-    this.resourcesV = resourcesV;
-    this.populationV = populationV;
-    this.technologyV = technologyV;
-    this.happinessV = happinessV;
+var TotalPoints = function (armyV, capitalV, resourcesV, populationV, technologyV, happinessV) {
+    this.armyV = 1000;
+    this.capitalV = 1000;
+    this.resourcesV = 1000;
+    this.populationV = 1000;
+    this.technologyV = 1000;
+    this.happinessV = 1000;
 }
 TotalPoints.prototype.armyFunction = function () {
     var armystuff = parseInt($("#ArmyId").val());
@@ -22,10 +22,85 @@ TotalPoints.prototype.armyFunction = function () {
     $("#armyV").html(this.armyV);
     $("#aSizeOutput").val(this.armyV);
 }
-$(document).ready(function () {
-    var newTotalPoints = new TotalPoints(parseInt($("#aSizeOutput").val()));
-    //var newTotalPoints = new TotalPoints(parseInt($("#aSizeOutput").val()), parseInt($("#capitalOutput").val()),parseInt($("#populationOutput").val()),parseInt($("#happinessOutput").val()),parseInt($("#technologyOutput").val()));
-    $('.GovernmentId1').change(function () {
+
+TotalPoints.prototype.economicFunction = function () {
+    var economicVar = parseInt($("#EconomyId").val());
+    if (economicVar === 2) {
+        this.capitalV = this.populationV;
+        $("#capitalOutput").html(this.capitalV);
+    } else {
+        this.capitalV = 1000;
+        $("#capitalOutput").html(this.capitalV);
+    }
+}
+TotalPoints.prototype.technologyFunction = function () {
+    var economicVar = parseInt($("#EconomyId").val());
+    var technologyVar = parseInt($("#TechnologyId").val());
+    var geographyVar = parseInt($("#GeographyId").val());
+    if (technologyVar === 1) {
+        this.technologyV = 0;
+        this.capitalV = this.populationV;
+        $("#technologyOutput").html(this.technologyV);
+    }
+    else if (technologyVar === 2) {
+        this.technologyV = 1000;
+        this.populationV = (this.populationV * .1)
+        $("#technologyOutput").html(this.technologyV);
+        $("#populationOutput").html(this.populationV);
+        $("#capitalOutput").html(this.capitalV);
+    } else {
+        this.technologyV = 1000;
+        this.populationV = 1000;
+        $("#technologyOutput").html(this.technologyV);
+        $("#populationOutput").html(this.populationV);
+        $("#capitalOutput").html(this.capitalV);
+    }
+}
+    TotalPoints.prototype.geographyFunction = function () {
+        var economicVar = parseInt($("#EconomyId").val());
+        var geographyVar = parseInt($("#GeographyId").val());
+        var technologyVar = parseInt($("#TechnologyId").val());
+        if (geographyVar === 1) {
+            this.populationV = 1000;
+            this.happinessV = 1000;
+            this.populationV = (this.populationV * .75);
+
+            $("#populationOutput").html(this.populationV);
+        } else if (geographyVar === 6) {
+            this.populationV = 1000;
+            this.happinessV = (this.happinessV * 2)
+            $("#happinessOutput").html(this.happinessV);
+        }
+        else {
+            this.happinessV = 1000;
+        }
+    }
+    TotalPoints.prototype.combinedFunction = function () {
+        var economicVar = parseInt($("#EconomyId").val());
+        var geographyVar = parseInt($("#GeographyId").val());
+        var technologyVar = parseInt($("#TechnologyId").val());
+        if ((geographyVar === 1) && (technologyVar === 2)) {
+            this.populationV = 1000;
+            this.populationV = (this.populationV * .1)
+            this.populationV = (this.populationV * .75);
+
+            $("#populationOutput").html(this.populationV);
+        }
+        else if ((geographyVar !== 1) && (technologyVar === 2)) {
+            this.populationV = 100
+        } else if ((geographyVar === 1) && (technologyVar !== 2)) {
+            this.populationV = 750;
+        } else {
+            this.populationV = 1000;
+        }
+    }
+    $(document).ready(function () {
+        var newTotalPoints = new TotalPoints(parseInt($("#aSizeOutput").val()), parseInt($("#capitalOutput").val()), parseInt($("#populationOutput").val()), parseInt($("#happinessOutput").val()), parseInt($("#technologyOutput").val()));
+        $('.GovernmentId1').change(function () {
+            newTotalPoints.armyFunction();
+            newTotalPoints.geographyFunction();
+            newTotalPoints.economicFunction();
+            newTotalPoints.combinedFunction();
             $.ajax({
                 url: '/Game/newGovernment/' + $('#GovernmentId').val(),
                 type: 'GET',
@@ -37,8 +112,12 @@ $(document).ready(function () {
                 }
             });
         });
-    $('.ArmyId1').change(function () {
-        newTotalPoints.armyFunction();
+        $('.ArmyId1').change(function () {
+            newTotalPoints.armyFunction();
+            newTotalPoints.technologyFunction();
+            newTotalPoints.geographyFunction();
+            newTotalPoints.economicFunction();
+            newTotalPoints.combinedFunction();
             $.ajax({
                 url: '/Game/newArmy/' + $('#ArmyId').val(),
                 type: 'GET',
@@ -51,6 +130,11 @@ $(document).ready(function () {
             });
         });
         $('.EconomyId1').change(function () {
+            newTotalPoints.armyFunction();
+            newTotalPoints.technologyFunction();
+            newTotalPoints.geographyFunction();
+            newTotalPoints.economicFunction();
+            newTotalPoints.combinedFunction();
             $.ajax({
                 url: '/Game/newEconomy/' + $('#EconomyId').val(),
                 type: 'GET',
@@ -63,6 +147,11 @@ $(document).ready(function () {
             });
         });
         $('.TechnologyId1').change(function () {
+            newTotalPoints.technologyFunction();
+            newTotalPoints.armyFunction();
+            newTotalPoints.geographyFunction();
+            newTotalPoints.economicFunction();
+            newTotalPoints.combinedFunction();
             $.ajax({
                 url: '/Game/newTechnology/' + $('#TechnologyId').val(),
                 type: 'GET',
@@ -75,7 +164,11 @@ $(document).ready(function () {
             });
         });
         $('.GeographyId1').change(function () {
-            console.log("firing");
+            newTotalPoints.technologyFunction();
+            newTotalPoints.armyFunction();
+            newTotalPoints.geographyFunction();
+            newTotalPoints.economicFunction();
+            newTotalPoints.combinedFunction();
             $.ajax({
                 url: '/Game/newGeography/' + $('#GeographyId').val(),
                 type: 'GET',
@@ -85,67 +178,6 @@ $(document).ready(function () {
                     var result5 = GeographyResult.Description
                     $('.GeographyResults').html(result5);
                 }
-            });
-            $('.GovernmentId1').change(function () {
-                $.ajax({
-                    url: '/Game/newGovernment/' + $('#GovernmentId').val(),
-                    type: 'GET',
-                    data: $(this).serialize(),
-                    dataType: 'json',
-                    success: function (GovernmentResult) {
-                        var result1 = GovernmentResult.Description
-                        $('.GovernmentResults').html(result1);
-                    }
-                });
-            });
-            $('.ArmyId1').change(function () {
-                $.ajax({
-                    url: '/Game/newArmy/' + $('#ArmyId').val(),
-                    type: 'GET',
-                    data: $(this).serialize(),
-                    dataType: 'json',
-                    success: function (ArmyResult) {
-                        var result2 = ArmyResult.Description
-                        $('.ArmyResults').html(result2);
-                    }
-                });
-            });
-            $('.EconomyId1').change(function () {
-                $.ajax({
-                    url: '/Game/newEconomy/' + $('#EconomyId').val(),
-                    type: 'GET',
-                    data: $(this).serialize(),
-                    dataType: 'json',
-                    success: function (EconomyResult) {
-                        var result3 = EconomyResult.Description
-                        $('.EconomyResults').html(result3);
-                    }
-                });
-            });
-            $('.TechnologyId1').change(function () {
-                $.ajax({
-                    url: '/Game/newTechnology/' + $('#TechnologyId').val(),
-                    type: 'GET',
-                    data: $(this).serialize(),
-                    dataType: 'json',
-                    success: function (TechnologyResult) {
-                        var result4 = TechnologyResult.Description
-                        $('.TechnologyResults').html(result4);
-                    }
-                });
-            });
-            $('.GeographyId1').change(function () {
-                console.log("firing");
-                $.ajax({
-                    url: '/Game/newGeography/' + $('#GeographyId').val(),
-                    type: 'GET',
-                    data: $(this).serialize(),
-                    dataType: 'json',
-                    success: function (GeographyResult) {
-                        var result5 = GeographyResult.Description
-                        $('.GeographyResults').html(result5);
-                    }
-                });
             });
         });
     });
