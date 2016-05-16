@@ -13,7 +13,7 @@
 <h4>Forge a new Nation</h4>
 
 @using (Html.BeginForm())
-            {
+{
     <p>
         Nation Name
         @Html.TextBoxFor(model => model.Name)
@@ -43,10 +43,21 @@
         Geographic Layout
         <div class="GeographyId1">@Html.DropDownList("GeographyId")</div>
     </p>
+    @Html.Hidden("ArmyValue", 897)
+
+    <p>Army Size:<span id="aSizeOutput"> @Html.Hidden("ArmyValue", "aSizeOutput")1000</span></p>
+    Console.WriteLine("#aSizeOutput");
+    <input name="ArmyValue" type="hidden" id="aSize">
+    <span>Capital:<span id="capitalOutput">@Html.Hidden("CapitalValue")1000</span></span>
+
+            <span>Population:<span id="populationOutput">1000 @Html.Hidden("PopulationValue")</span></span>
+            <span>Natrual Resources: <span id="resourceOutput">1000 @Html.Hidden("ResourceValue")</span></span>
+            <span>Happiness Value:<span id="happinessOutput">1000 @Html.Hidden("HappinessValue")</span></span>
+            <span>Technology Value:<span id="technologyOutput">1000 @Html.Hidden("TechnologyValue")</span></span>
 
     <input type="submit" value="Setup" />
-
 }
+
 <h1>Descriptions!</h1>
 
 <h3>Army Description: </h3>
@@ -60,31 +71,5 @@
 <h3>Geography Description: </h3>
 <div class="GeographyResults"></div>
 
-
-<div id="statOutput">
-    <div class="row">
-        <div class="col-xs-6" title="Total number of troops at your command!">
-            <input type="hidden" name="input_hp" id="input_army" value="1000">
-            <span>Army Size: <span><span id="aSizeOutput">1000</span><span>
-        </div>
-        <div class="col-xs-6" title="resource for performing magic attacks">
-            <span>Capital: <span><span id="capitalOutput">1000</span><span>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-2">
-            <span>Population: <span> <span id="populationOutput">1000</span>
-        </div>
-        <div class="col-xs-2">
-            <span>Natrual Resources: <span> <span id="resourceOutput">1000</span>
-        </div>
-        <div class="col-xs-2">
-            <span>Happiness Value: <span><span id="happinessOutput">1000</span>
-        </div>
-        <div class="col-xs-2">
-            <span>Technology Value: <span><span id="technologyOutput">1000</span>
-        </div>
-    </div>
-</div>
 
 <p>@Html.ActionLink("Home", "Index")</p>

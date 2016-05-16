@@ -15,11 +15,11 @@ namespace Hegemony.Models
         public int NationId { get; set; }
         public string Name { get; set; }
         public int GovernmentId { get; set; }
-        public int GovernmentValue { get; set; }
+        public int PopulationValue { get; set; }
         public int EconomyId { get; set; }
-        public int EconomyValue { get; set; }
+        public int CapitalValue { get; set; }
         public int GeographyId { get; set; }
-        public int GeographyValue { get; set; }
+        public int ResourceValue { get; set; }
         public int TechnologyId { get; set; }
         public int TechnologyValue { get; set; }
         public int ArmyId { get; set; }
