@@ -9,16 +9,16 @@ var TotalPoints = function (armyV, capitalV, resourcesV, populationV, technology
 }
 TotalPoints.prototype.armyFunction = function () {
     var armystuff = parseInt($("#ArmyId").val());
-    $("#aSizeOutput").val(this.armyV);
+   
 
     if (armystuff === 2) {
         this.armyV = (this.populationV *.25)
         $("#aSizeOutput").html(this.armyV);
-        $("#aSizeOutput").val(this.armyV);
+        
     } else if (armystuff === 8) {
         this.armyV = 0;
         $("#aSizeOutput").html(this.armyV);
-        $("#aSizeOutput").val(this.armyV);
+        
         
     } else {
         this.armyV = 1000;
@@ -26,7 +26,7 @@ TotalPoints.prototype.armyFunction = function () {
         $("#aSizeOutput").val(this.armyV);
     }
     $("#armyV").html(this.armyV);
-    $("#aSizeOutput").val(this.armyV);
+  
     
 }
 
