@@ -43,19 +43,23 @@
         Geographic Layout
         <div class="GeographyId1">@Html.DropDownList("GeographyId")</div>
     </p>
-    @Html.Hidden("ArmyValue", 897)
+    @Html.Hidden("ArmyValue")
+    @Html.Hidden("PopulationValue")
+    @Html.Hidden("ResourceValue")
+    @Html.Hidden("HappinessValue")
+    @Html.Hidden("TechnologyValue")
+    @Html.Hidden("CapitalValue")
 
-    <p>Army Size:<span id="aSizeOutput"> @Html.Hidden("ArmyValue", "aSizeOutput")1000</span></p>
-    Console.WriteLine("#aSizeOutput");
-    <input name="ArmyValue" type="hidden" id="aSize">
-    <span>Capital:<span id="capitalOutput">@Html.Hidden("CapitalValue")1000</span></span>
+    <p>Army Size:<span id="aSizeOutput">1000</span></p>
+   
+    <span>Capital:<span id="capitalOutput">1000</span></span>
 
-            <span>Population:<span id="populationOutput">1000 @Html.Hidden("PopulationValue")</span></span>
-            <span>Natrual Resources: <span id="resourceOutput">1000 @Html.Hidden("ResourceValue")</span></span>
-            <span>Happiness Value:<span id="happinessOutput">1000 @Html.Hidden("HappinessValue")</span></span>
-            <span>Technology Value:<span id="technologyOutput">1000 @Html.Hidden("TechnologyValue")</span></span>
+            <span>Population:<span id="populationOutput">1000</span></span>
+            <span>Natrual Resources: <span id="resourceOutput">1000</span></span>
+            <span>Happiness Value:<span id="happinessOutput">1000 </span></span>
+            <span>Technology Value:<span id="technologyOutput">1000</span></span>
 
-    <input type="submit" value="Setup" />
+    <input type="submit" id="submitArray" value="Setup" />
 }
 
 <h1>Descriptions!</h1>

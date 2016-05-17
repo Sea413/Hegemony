@@ -24,6 +24,7 @@ namespace Hegemony.Models
         public int TechnologyValue { get; set; }
         public int ArmyId { get; set; }
         public int ArmyValue { get; set; }
+        public int HappinessValue { get; set; }
         public virtual ApplicationUser User { get; set; }
     }
 }

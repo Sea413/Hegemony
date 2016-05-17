@@ -45,7 +45,6 @@ TotalPoints.prototype.technologyFunction = function () {
     var economicVar = parseInt($("#EconomyId").val());
     var technologyVar = parseInt($("#TechnologyId").val());
     var geographyVar = parseInt($("#GeographyId").val());
-    $("#aSizeOutput").val(this.armyV);
     if (technologyVar === 1) {
         this.technologyV = 0;
         this.capitalV = this.populationV;
@@ -92,14 +91,18 @@ TotalPoints.prototype.geographyFunction = function () {
         }
     }
 TotalPoints.prototype.combinedFunction = function () {
-    var txt = document.querySelector("#aSizeOutput").innerText;
-    console.log(txt)
-    document.querySelector("#aSize").value = txt;
-    console.log("#aSize");
-    $("#aSizeOutput").val(this.armyV);
         var economicVar = parseInt($("#EconomyId").val());
         var geographyVar = parseInt($("#GeographyId").val());
         var technologyVar = parseInt($("#TechnologyId").val());
+        var geographyVar = parseInt($("#GeographyId").val());
+        $("#ArmyValue").val(this.armyV);
+        $("#PopulationValue").val(this.populationV);
+        $("#CapitalValue").val(this.capitalV);
+        $("#ResourceValue").val(this.resourcesV);
+        $("#HappinessValue").val(this.happinessV);
+        $("#TechnologyValue").val(this.technologyV);
+        
+
         if ((geographyVar === 1) && (technologyVar === 2) && (economicVar !==2)) {
             this.populationV = 75;
 
@@ -108,9 +111,16 @@ TotalPoints.prototype.combinedFunction = function () {
 
             $("#aSizeOutput").html(this.armyV);
             console.log("aSizeOutput")
+            $("#ArmyValue").val(this.armyV);
+            $("#PopulationValue").val(this.populationV);
+            $("#CapitalValue").val(this.capitalV);
+            $("#ResourceValue").val(this.resourcesV);
+            $("#HappinessValue").val(this.happinessV);
+            $("#TechnologyValue").val(this.technologyV);
         }
         else if ((geographyVar == 1) && (technologyVar === 2) && (economicVar === 2)) {
             this.populationV = 75;
+            this.capitalV = this.populationV;
 
 
             $("#populationOutput").html(this.populationV);
@@ -120,22 +130,57 @@ TotalPoints.prototype.combinedFunction = function () {
             $("#populationOutput").html(this.populationV);
             $("#aSizeOutput").html(this.armyV);
             $("#capitalOutput").html(this.capitalV);
+            $("#ArmyValue").val(this.armyV);
+            $("#PopulationValue").val(this.populationV);
+            $("#CapitalValue").val(this.capitalV);
+            $("#ResourceValue").val(this.resourcesV);
+            $("#HappinessValue").val(this.happinessV);
+            $("#TechnologyValue").val(this.technologyV);
         }
 
         else if ((geographyVar !== 1) && (technologyVar === 2)) {
             this.populationV = 100
             $("#populationOutput").html(this.populationV);
             $("#aSizeOutput").html(this.armyV);
+            $("#ArmyValue").val(this.armyV);
+            $("#PopulationValue").val(this.populationV);
+            $("#CapitalValue").val(this.capitalV);
+            $("#ResourceValue").val(this.resourcesV);
+            $("#HappinessValue").val(this.happinessV);
+            $("#TechnologyValue").val(this.technologyV);
         } else if ((geographyVar === 1) && (technologyVar !== 2)) {
             this.populationV = 750;
             $("#populationOutput").html(this.populationV);
             $("#aSizeOutput").html(this.armyV);
+            $("#ArmyValue").val(this.armyV);
+            $("#PopulationValue").val(this.populationV);
+            $("#CapitalValue").val(this.capitalV);
+            $("#ResourceValue").val(this.resourcesV);
+            $("#HappinessValue").val(this.happinessV);
+            $("#TechnologyValue").val(this.technologyV);
            
+        } else if ((geographyVar === 1) && (technologyVar === 2)) {
+            this.populationV = 75;
+            $("#populationOutput").html(this.populationV);
+            $("#aSizeOutput").html(this.armyV);
+            $("#ArmyValue").val(this.armyV);
+            $("#PopulationValue").val(this.populationV);
+            $("#CapitalValue").val(this.capitalV);
+            $("#ResourceValue").val(this.resourcesV);
+            $("#HappinessValue").val(this.happinessV);
+            $("#TechnologyValue").val(this.technologyV);
+
         } else {
             this.populationV = 1000;
             $("#aSizeOutput").html(this.armyV);
             
             $("#populationOutput").html(this.populationV);
+            $("#ArmyValue").val(this.armyV);
+            $("#PopulationValue").val(this.populationV);
+            $("#CapitalValue").val(this.capitalV);
+            $("#ResourceValue").val(this.resourcesV);
+            $("#HappinessValue").val(this.happinessV);
+            $("#TechnologyValue").val(this.technologyV);
            
         }
     }
@@ -247,6 +292,22 @@ TotalPoints.prototype.combinedFunction = function () {
                 success: function (GeographyResult) {
                     var result5 = GeographyResult.Description
                     $('.GeographyResults').html(result5);
+                }
+            });
+        });
+        $('#submitArray').submit(function () {
+            var dataObject = {
+                ArmyValue: $("#aSizeOutput").val(),
+                PopulationValue: $("aSizeOutput").val()
+
+            }
+            $.ajax({
+                url: '/Game/newArmySubmit/',
+                type: 'GET',
+                data: dataObject,
+                dataType: 'json',
+                success: function () {
+                    
                 }
             });
         });

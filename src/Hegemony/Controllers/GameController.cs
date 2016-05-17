@@ -51,6 +51,18 @@ namespace Hegemony.Controllers
             _db.SaveChanges();
             return RedirectToAction("Setup");
         }
+        public ActionResult newArmySubmit( )
+        {
+           
+            return View();
+        }
+        [HttpPost]
+        public async Task<ActionResult> newArmySubmit(Nation testing)
+        {
+            _db.Nations.Add(testing);
+            _db.SaveChanges();
+            return RedirectToAction("Setup");
+        }
 
         public IActionResult newGovernment(int id)
         {
