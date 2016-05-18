@@ -8,9 +8,10 @@ using Hegemony.Models;
 namespace Hegemony.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20160518022907_Drumstick")]
+    partial class Drumstick
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
@@ -80,28 +81,6 @@ namespace Hegemony.Migrations
                     b.HasKey("ArmyId");
 
                     b.HasAnnotation("Relational:TableName", "Armies");
-                });
-
-            modelBuilder.Entity("Hegemony.Models.CharacterInfo", b =>
-                {
-                    b.Property<int>("AvatarId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("api_detail_url");
-
-                    b.Property<string>("deck");
-
-                    b.Property<int>("fame");
-
-                    b.Property<string>("image");
-
-                    b.Property<string>("name");
-
-                    b.Property<string>("real_name");
-
-                    b.HasKey("AvatarId");
-
-                    b.HasAnnotation("Relational:TableName", "CharacterInfo");
                 });
 
             modelBuilder.Entity("Hegemony.Models.Economy", b =>

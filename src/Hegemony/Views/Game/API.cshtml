@@ -1,0 +1,10 @@
+﻿@model Hegemony.Models.CharacterInfo
+
+<h2>What will be your nations Avatar!</h2>
+
+@using (Html.BeginForm("getCharacter", "Game", FormMethod.Post))
+{
+
+    @Html.TextBoxFor(m => Model.name)
+    <button type="submit">Submit</button>
+}

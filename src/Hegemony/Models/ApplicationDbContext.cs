@@ -29,5 +29,6 @@ namespace Hegemony.Models
         public DbSet<Economy> Economies { get; set; }
         public DbSet<Government> Governments { get; set; }
         public DbSet<Outcome> Outcomes { get; set; }
+        public DbSet<CharacterInfo> CharacterInfo { get; set; }
     }
 }

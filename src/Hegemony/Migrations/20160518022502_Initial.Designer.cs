@@ -8,7 +8,7 @@ using Hegemony.Models;
 namespace Hegemony.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20160506171129_Initial")]
+    [Migration("20160518022502_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -162,19 +162,21 @@ namespace Hegemony.Migrations
 
                     b.Property<int>("ArmyValue");
 
-                    b.Property<int>("EconomyId");
+                    b.Property<int>("CapitalValue");
 
-                    b.Property<int>("EconomyValue");
+                    b.Property<int>("EconomyId");
 
                     b.Property<int>("GeographyId");
 
-                    b.Property<int>("GeographyValue");
-
                     b.Property<int>("GovernmentId");
 
-                    b.Property<int>("GovernmentValue");
+                    b.Property<int>("HappinessValue");
 
                     b.Property<string>("Name");
+
+                    b.Property<int>("PopulationValue");
+
+                    b.Property<int>("ResourceValue");
 
                     b.Property<int>("TechnologyId");
 

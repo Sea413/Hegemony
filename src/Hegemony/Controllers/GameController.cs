@@ -4,11 +4,14 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Mvc.Rendering;
 using Microsoft.Data.Entity;
+using Newtonsoft.Json.Linq;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -49,7 +52,7 @@ namespace Hegemony.Controllers
             nation.User = currentUser;
             _db.Nations.Add(nation);
             _db.SaveChanges();
-            return RedirectToAction("Setup");
+            return RedirectToAction("API");
         }
         public ActionResult newArmySubmit( )
         {
@@ -92,6 +95,43 @@ namespace Hegemony.Controllers
         {
             var newGeographyDescription = _db.Geographies.FirstOrDefault(Geography => Geography.GeographyId == id);
             return Json(newGeographyDescription);
+        }
+        public IActionResult API()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult API(string name)
+        {
+
+            var client = new RestClient("http://comicvine.gamespot.com/api/");
+            var request = new RestRequest("characters/?api_key=85bcf9ab4e6f07fc814207cd668077b1d32b5a99&format=JSON&limit=5&filter=name:" + name);
+            var response = client.Execute(request);
+            //JObject jsonResponse = (JObject)JsonConvert.DeserializeObject(response.Content);
+
+            dynamic jsonResponse = JObject.Parse(response.Content);
+
+            List<CharacterInfo> characterList = new List<CharacterInfo>();
+            foreach (var result in jsonResponse["results"])
+            {
+                CharacterInfo characterInfo = new CharacterInfo();
+                characterInfo.name = result["name"].ToString();
+                characterInfo.deck = result["deck"].ToString();
+                try
+                {
+                    characterInfo.image = result.image["medium_url"].ToString();
+                }
+                catch (System.InvalidOperationException) { characterInfo.image = "../images/image-not-found.jpg"; };
+                characterInfo.fame = result["count_of_issue_appearances"];
+                characterList.Add(characterInfo);
+            }
+
+            return View("Display", characterList);
+
+        }
+        public IActionResult Display()
+        {
+            return View();
         }
     }
 }
